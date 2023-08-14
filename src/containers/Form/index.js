@@ -106,9 +106,9 @@ const Form = ({ onSuccess, onError }) => {
                         error={errorFields.prenom}
                     />
                     <Select
-                        selection={["Personel", "Entreprise"]}
+                        selection={["Personne", "Entreprise"]}
                         onChange={() => null}
-                        label="Personel / Entreprise"
+                        label="Personne / Entreprise"
                         name="type"
                         type="large"
                         titleEmpty

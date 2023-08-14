@@ -7,7 +7,7 @@ describe("When Events is created", () => {
         await screen.findByText("Email");
         await screen.findByText("Nom");
         await screen.findByText("Prénom");
-        await screen.findByText("Personel / Entreprise");
+        await screen.findByText("Personne / Entreprise");
     });
 });
 
@@ -32,10 +32,10 @@ describe("and a click is triggered on the submit button", () => {
         fireEvent.click(inputButton);
 
         // Attendre que les options soient affichées
-        await screen.findByText("Personel");
+        await screen.findByText("Personne");
 
-        // Sélectionner l'option "Personel"
-        fireEvent.click(screen.getByText("Personel"));
+        // Sélectionner l'option "Personne"
+        fireEvent.click(screen.getByText("Personne"));
 
         fireEvent.change(messageTextarea, {
             target: { value: "Hello, this is a test message." },
@@ -79,10 +79,10 @@ describe("Form Integration Test", () => {
         fireEvent.click(screen.getByTestId("collapse-button-testid"));
 
         // Attendre que les options soient affichées
-        await screen.findByText("Personel");
+        await screen.findByText("Personne");
 
-        // Sélectionner l'option "Personel"
-        fireEvent.click(screen.getByText("Personel"));
+        // Sélectionner l'option "Personne"
+        fireEvent.click(screen.getByText("Personne"));
 
         fireEvent.change(messageTextarea, {
             target: { value: "Hello, this is a test message." },

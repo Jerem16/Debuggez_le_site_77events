@@ -1,17 +1,17 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Page from ".";
 
-describe("When Form is created", () => {
-    it("a list of fields card is displayed", async () => {
+describe("Lorsque le formulaire est créé", () => {
+    it("affiche une liste de champs", async () => {
         render(<Page />);
         await screen.findByText("Email");
         await screen.findByText("Nom");
         await screen.findByText("Prénom");
-        await screen.findByText("Personel / Entreprise");
+        await screen.findByText("Personne / Entreprise");
     });
 
-    describe("and a click is triggered on the submit button", () => {
-        it("the success message is displayed", async () => {
+    describe("et qu'un clic est déclenché sur le bouton d'envoi", () => {
+        it("affiche le message de réussite", async () => {
             render(<Page />);
 
             const nomInput = screen.queryByTestId("field-testid-nom");
@@ -29,19 +29,15 @@ describe("When Form is created", () => {
             fireEvent.change(emailInput, {
                 target: { value: "john.doe@example.com" },
             });
-
-            // Cliquer sur le bouton du Select pour afficher les options
             fireEvent.click(inputButton);
 
-            // Attendre que les options soient affichées
-            await screen.findByText("Personel");
+            await screen.findByText("Personne");
 
-            // Sélectionner l'option "Personel"
-            fireEvent.click(screen.getByText("Personel"));
-
+            fireEvent.click(screen.getByText("Personne"));
             fireEvent.change(messageTextarea, {
                 target: { value: "Hello, this is a test message." },
             });
+
             fireEvent(
                 await screen.findByText("Envoyer"),
                 new MouseEvent("click", {
@@ -60,8 +56,8 @@ describe("When Form is created", () => {
     });
 });
 
-describe("When a page is created", () => {
-    it("displays the EventCard elements", () => {
+describe("Lorsqu'une page est créée alors elle :", () => {
+    it("affiche les éléments EventCard", () => {
         render(<Page />);
 
         const EventCardImages = screen.queryAllByTestId("card-image-testid");
@@ -70,7 +66,7 @@ describe("When a page is created", () => {
         expect(image).toBeInTheDocument();
     });
 
-    it("a list a people is displayed", () => {
+    it("affiche la liste PeopleCard", () => {
         render(<Page />);
 
         const PeopleCardImages = screen.queryAllByTestId(
@@ -81,7 +77,7 @@ describe("When a page is created", () => {
         expect(image).toBeInTheDocument();
     });
 
-    it("a footer is displayed", () => {
+    it("affiche le footer", () => {
         render(<Page />);
 
         const footer = screen.getByRole("contentinfo");
