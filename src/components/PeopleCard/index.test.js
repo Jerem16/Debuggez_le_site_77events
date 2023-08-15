@@ -1,29 +1,32 @@
 import { render, screen } from "@testing-library/react";
 import PeopleCard from "./index";
 
-describe("When a people card is created", () => {
-  it("an image is display with alt value", () => {
-    render(
-      <PeopleCard imageSrc="http://src-image" imageAlt="image-alt-text" 
-      name="test name"
-      position="test position" />
-    );
-    const imageElement = screen.getByTestId("peopleCard-image-testid");
-    expect(imageElement).toBeInTheDocument();
-    expect(imageElement.alt).toEqual("image-alt-text");
-  });
-  it("a title and a month are displayed", () => {
-    render(
-      <PeopleCard
-        imageSrc="http://src-image"
-        imageAlt="image-alt-text"
-        name="test name"
-        position="test position"
-      />
-    );
-    const nameElement = screen.getByText(/test name/);
-    const titleElement = screen.getByText(/test position/);
-    expect(nameElement).toBeInTheDocument();
-    expect(titleElement).toBeInTheDocument();
-  });
+describe("Lorsqu'une carte de personne est créée", () => {
+    it("une image est affichée avec une valeur 'alt'", () => {
+        render(
+            <PeopleCard
+                imageSrc="http://src-image"
+                imageAlt="texte-alt-de-l-image"
+                name="nom de test"
+                position="poste de test"
+            />
+        );
+        const elementImage = screen.getByTestId("peopleCard-image-testid");
+        expect(elementImage).toBeInTheDocument();
+        expect(elementImage.alt).toEqual("texte-alt-de-l-image");
+    });
+    it("un titre et un poste sont affichés", () => {
+        render(
+            <PeopleCard
+                imageSrc="http://src-image"
+                imageAlt="texte-alt-de-l-image"
+                name="nom de test"
+                position="poste de test"
+            />
+        );
+        const elementNom = screen.getByText(/nom de test/);
+        const elementPoste = screen.getByText(/poste de test/);
+        expect(elementNom).toBeInTheDocument();
+        expect(elementPoste).toBeInTheDocument();
+    });
 });

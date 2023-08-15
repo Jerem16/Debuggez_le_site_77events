@@ -23,7 +23,12 @@ const EventCard = ({
                 src={imageSrc}
                 alt={imageAlt}
             />
-            <div className="EventCard__label">{label}</div>
+            <div
+                className="EventCard__label"
+                data-testid={`label-testid-${label}`}
+            >
+                {label}
+            </div>
         </div>
         <div className="EventCard__descriptionContainer">
             <div data-testid="card-title-testid" className="EventCard__title">

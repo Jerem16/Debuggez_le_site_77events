@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
@@ -65,9 +67,18 @@ const Form = ({ onSuccess, onError }) => {
                 setSending(false);
                 setFormSubmitted(true);
                 onSuccess();
+                act(() => {
+                    setSending(false);
+                    setFormSubmitted(true);
+                    onSuccess();
+                });
             } catch (err) {
                 setSending(false);
                 onError(err);
+                act(() => {
+                    setSending(false);
+                    onError(err);
+                });
             }
         },
         [onSuccess, onError]

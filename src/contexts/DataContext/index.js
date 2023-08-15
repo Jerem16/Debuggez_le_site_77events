@@ -33,12 +33,6 @@ export const DataProvider = ({ children }) => {
         getData();
     }, []);
 
-    // Trier tous les events de "data" du plus recent au plus ancient
-    // const last = data?.events?.sort(
-    //     (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
-    // )[0];
-
-    // Trouve le projet le plus récent sans trier "data"
     const last = data?.events?.reduce((latestEvent, currentEvent) => {
         if (
             !latestEvent ||
@@ -52,11 +46,6 @@ export const DataProvider = ({ children }) => {
     const contextValue = useMemo(() => ({ data, last, error }), [data, error]);
 
     return (
-        // (useMemo = optimisation des performances)
-        //     <DataContext.Provider   
-        // eslint-disable-next-line react/jsx-no-constructed-context-values
-        //     value={{ data, last, error }}
-        // >
         <DataContext.Provider value={contextValue}>
             {children}
         </DataContext.Provider>

@@ -71,6 +71,7 @@ const Select = ({
                                             defaultChecked={value === s}
                                             name={name}
                                             type="radio"
+                                            data-testid={`input-li-testid-${s}`}
                                         />{" "}
                                         {s}
                                     </li>
@@ -81,7 +82,7 @@ const Select = ({
                     <input type="hidden" value={value || ""} name={name} />
                     <button
                         type="button"
-                        data-testid="collapse-button-testid"
+                        data-testid={`collapse-button-testid-${name}`}
                         className={collapsed ? "open" : "close"}
                         onClick={(e) => {
                             e.preventDefault();

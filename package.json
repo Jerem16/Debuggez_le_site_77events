@@ -12,13 +12,12 @@
         "react-dom": "^18.0.0",
         "react-scripts": "5.0.1",
         "sass": "^1.51.0",
-        "uuid": "^9.0.0",
         "web-vitals": "^2.1.4"
     },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test --watchAll=false",
+        "test": "react-scripts test --watchAll=true",
         "lint": "eslint .eslintrc.js ./src",
         "format": "prettier ./src --write"
     },
@@ -49,6 +48,7 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.29.4",
         "eslint-plugin-react-hooks": "^4.5.0",
+        "fetch-mock-jest": "^1.5.1",
         "prettier": "^2.6.2"
     }
 }

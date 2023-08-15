@@ -19,7 +19,3 @@ export const MONTHS = {
 };
 
 export const getMonth = (date) => MONTHS[date.getMonth() + 1];
-const currentDate = new Date();
-const frenchMonth = getMonth(currentDate);
-
-console.log(`The current month in French is: ${frenchMonth}`);

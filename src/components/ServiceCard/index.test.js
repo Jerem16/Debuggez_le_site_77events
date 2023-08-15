@@ -1,22 +1,30 @@
 import { render, screen } from "@testing-library/react";
 import ServiceCard from "./index";
 
-describe("When a service card is created", () => {
-  it("an image is display with alt value", () => {
-    render(
-      <ServiceCard imageSrc="http://src-image" imageAlt="image-alt-text">{" "}</ServiceCard>
-    );
-    const imageElement = screen.getByTestId("card-image-testid");
-    expect(imageElement).toBeInTheDocument();
-    expect(imageElement.alt).toEqual("image-alt-text");
-  });
-  it("a content is displayed", () => {
-    render(
-      <ServiceCard imageSrc="http://src-image" imageAlt="image-alt-text">
-        This is the card content
-      </ServiceCard>
-    );
-    const contentElement = screen.getByText(/This is the card content/);
-    expect(contentElement).toBeInTheDocument();
-  });
+describe("Lorsqu'une carte de service est créée", () => {
+    it("une image est affichée avec une valeur 'alt'", () => {
+        render(
+            <ServiceCard
+                imageSrc="http://src-image"
+                imageAlt="texte-alt-de-l-image"
+            >
+                {" "}
+            </ServiceCard>
+        );
+        const elementImage = screen.getByTestId("card-image-testid");
+        expect(elementImage).toBeInTheDocument();
+        expect(elementImage.alt).toEqual("texte-alt-de-l-image");
+    });
+    it("un contenu est affiché", () => {
+        render(
+            <ServiceCard
+                imageSrc="http://src-image"
+                imageAlt="texte-alt-de-l-image"
+            >
+                Voici le contenu de la carte
+            </ServiceCard>
+        );
+        const elementContenu = screen.getByText(/Voici le contenu de la carte/);
+        expect(elementContenu).toBeInTheDocument();
+    });
 });

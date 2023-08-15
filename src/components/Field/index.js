@@ -13,6 +13,7 @@ const Field = ({
     name,
     placeholder,
     error,
+    onChange,
 }) => {
     let component;
     switch (type) {
@@ -23,6 +24,7 @@ const Field = ({
                     name={name}
                     placeholder={placeholder}
                     data-testid={`field-testid-${name}`}
+                    onChange={onChange} // Ajoutez cette ligne
                 />
             );
             break;
@@ -59,7 +61,8 @@ Field.propTypes = {
     name: PropTypes.string,
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    error: PropTypes.string, // Add this line to include 'error' in prop validation
+    error: PropTypes.string,
+    onChange: PropTypes.func,
 };
 
 Field.defaultProps = {
@@ -68,6 +71,7 @@ Field.defaultProps = {
     type: FIELD_TYPES.INPUT_TEXT,
     name: "field-name",
     error: "",
+    onChange: () => {},
 };
 
 export default Field;

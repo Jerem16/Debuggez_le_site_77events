@@ -14,7 +14,7 @@ describe("Lorsqu'un sélecteur est créé", () => {
     it("un bouton d'action de réduction est affiché", () => {
         render(<Select selection={["valeur1", "valeur2"]} />);
         const elementBoutonReduction = screen.getByTestId(
-            "collapse-button-testid"
+            "collapse-button-testid-select"
         );
         expect(elementBoutonReduction).toBeInTheDocument();
     });
@@ -33,7 +33,7 @@ describe("Lorsqu'un sélecteur est créé", () => {
         it("une liste de valeurs est affichée", () => {
             render(<Select selection={["valeur1", "valeur2"]} />);
             const elementBoutonReduction = screen.getByTestId(
-                "collapse-button-testid"
+                "collapse-button-testid-select"
             );
             fireEvent(
                 elementBoutonReduction,
@@ -58,7 +58,7 @@ describe("Lorsqu'un sélecteur est créé", () => {
                     />
                 );
                 const elementBoutonReduction = screen.getByTestId(
-                    "collapse-button-testid"
+                    "collapse-button-testid-select"
                 );
                 fireEvent(
                     elementBoutonReduction,
@@ -98,4 +98,3 @@ describe("Lorsqu'un sélecteur est créé", () => {
         });
     });
 });
- 

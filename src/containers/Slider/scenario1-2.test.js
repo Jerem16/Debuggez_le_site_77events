@@ -28,7 +28,7 @@ const mockEventData = {
 };
 
 describe("Composant Slider", () => {
-    it("devrait afficher les images avec les mois correspondants", async () => {
+    it("devrait afficher les slides triées par date, du plus ancien au plus récent", async () => {
         window.console.error = jest.fn();
         api.loadData = jest.fn().mockReturnValue(mockEventData);
 
@@ -48,7 +48,7 @@ describe("Composant Slider", () => {
         expect(maiDate).toHaveTextContent("mai");
     });
 
-    it("devrait afficher les images triées par date du plus récent au plus ancien lorsque les événements sont affichés de manière aléatoire", async () => {
+    it("devrait afficher les slides avec les mois correspondants", async () => {
         window.console.error = jest.fn();
         api.loadData = jest.fn().mockReturnValue(mockEventData);
 
