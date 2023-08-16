@@ -26,7 +26,17 @@ const mockEventData = {
         },
     ],
 };
+describe("Fonction getMonth", () => {
+    it("devrait retourner le mois correct en français", () => {
+        const february = new Date("2022-02-20T20:28:45.744Z");
+        const september = new Date("2022-09-29T20:28:45.744Z");
+        const december = new Date("2022-12-31T20:28:45.744Z");
 
+        expect(getMonth(february)).toBe("février");
+        expect(getMonth(september)).toBe("septembre");
+        expect(getMonth(december)).toBe("décembre");
+    });
+});
 describe("Composant Slider", () => {
     it("devrait afficher les slides triées par date, du plus ancien au plus récent", async () => {
         window.console.error = jest.fn();
@@ -38,52 +48,11 @@ describe("Composant Slider", () => {
             </DataProvider>
         );
 
-        const janvierDate = await screen.findByText("janvier");
-        expect(janvierDate).toHaveTextContent("janvier");
-
-        const marsDate = await screen.findByText("mars");
-        expect(marsDate).toHaveTextContent("mars");
-
-        const maiDate = await screen.findByText("mai");
-        expect(maiDate).toHaveTextContent("mai");
-    });
-
-    it("devrait afficher les slides avec les mois correspondants", async () => {
-        window.console.error = jest.fn();
-        api.loadData = jest.fn().mockReturnValue(mockEventData);
-
-        const byDateDesc = {
-            focus: mockEventData.focus?.sort(
-                (evtA, evtB) => new Date(evtA.date) - new Date(evtB.date)
-            ),
-        };
-
-        render(
-            <DataProvider>
-                <Slider />
-            </DataProvider>,
-            {
-                data: byDateDesc,
-            }
-        );
-
-        const monthElements = await screen.findAllByText(/(janvier|mars|mai)/i);
-
-        // Vérifier la présence de chaque élément de mois
-        expect(monthElements[0]).toBeInTheDocument();
-        expect(monthElements[1]).toBeInTheDocument();
-        expect(monthElements[2]).toBeInTheDocument();
-    });
-});
-
-describe("Fonction getMonth", () => {
-    it("devrait retourner le mois correct en français", () => {
-        const janvierDate = new Date("2022-01-29T20:28:45.744Z");
-        const marsDate = new Date("2022-03-29T20:28:45.744Z");
-        const maiDate = new Date("2022-05-29T20:28:45.744Z");
-
-        expect(getMonth(janvierDate)).toBe("janvier");
-        expect(getMonth(marsDate)).toBe("mars");
-        expect(getMonth(maiDate)).toBe("mai");
+        const janvier = await screen.findByTestId("0");
+        expect(janvier).toHaveTextContent("janvier");
+        const mars = await screen.findByTestId("1");
+        expect(mars).toHaveTextContent("mars");
+        const mai = await screen.findByTestId("2");
+        expect(mai).toHaveTextContent("mai");
     });
 });

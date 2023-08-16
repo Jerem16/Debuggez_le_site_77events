@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "./index";
 
-describe("Lorsque le formulaire est créé", () => {
+describe("Scénario 4: Lorsque le formulaire est créé", () => {
     it("une liste de champs d'événement est affichée", async () => {
         render(<Form />);
         await screen.findByText("Email");
@@ -9,57 +9,6 @@ describe("Lorsque le formulaire est créé", () => {
         await screen.findByText("Prénom");
         await screen.findByText("Personne / Entreprise");
     });
-
-    describe("et qu'un clic est déclenché sur le bouton de soumission", () => {
-        it("l'action de 'onSuccess' est appelée", async () => {
-            const onSuccess = jest.fn();
-            render(<Form onSuccess={onSuccess} />);
-
-            const nomInput = screen.queryByTestId("field-testid-nom");
-            const prenomInput = screen.queryByTestId("field-testid-prenom");
-            const emailInput = screen.queryByTestId("field-testid-email");
-            const messageTextarea = screen.queryByTestId(
-                "field-testid-message"
-            );
-            const inputButton = document.querySelector(".Select > button");
-
-            fireEvent.change(nomInput, { target: { value: "John" } });
-            fireEvent.change(prenomInput, { target: { value: "Doe" } });
-            fireEvent.change(emailInput, {
-                target: { value: "john.doe@example.com" },
-            });
-
-            // Cliquer sur le bouton du Select pour afficher les options
-            fireEvent.click(inputButton);
-
-            // Attendre que les options soient affichées
-            await screen.findByText("Personne");
-
-            // Sélectionner l'option "Personne"
-            fireEvent.click(screen.getByText("Personne"));
-
-            fireEvent.change(messageTextarea, {
-                target: { value: "Hello, this is a test message." },
-            });
-
-            fireEvent(
-                await screen.findByTestId("button-test-id"),
-                new MouseEvent("click", {
-                    cancelable: true,
-                    bubbles: true,
-                })
-            );
-            await screen.findByText("En cours");
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve();
-                }, 1000);
-            });
-            await screen.findByText("Envoyer");
-            expect(onSuccess).toHaveBeenCalled();
-        });
-    });
-
     describe("Test d'intégration du formulaire", () => {
         it("soumet le formulaire avec succès", async () => {
             const onSuccess = jest.fn();

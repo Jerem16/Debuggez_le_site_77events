@@ -8,7 +8,7 @@ export const FIELD_TYPES = {
 };
 
 const Field = ({
-    type = FIELD_TYPES.INPUT_TEXT,
+    type = FIELD_TYPES.TEXTAREA,
     label,
     name,
     placeholder,

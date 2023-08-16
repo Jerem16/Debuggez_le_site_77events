@@ -29,19 +29,7 @@ const data = {
 };
 
 describe("Lorsqu'une page est créée", () => {
-    it("EventCard affiche une carte d'événement avec le dernier événement", async () => {
-        api.loadData = jest.fn().mockReturnValue(data);
-
-        render(
-            <DataProvider>
-                <Page />
-            </DataProvider>
-        );
-
-        const eventCardSmall = await screen.findByTestId("last-event-card");
-        expect(eventCardSmall).toBeInTheDocument();
-    });
-    it("L'utilisateur sélectionne une catégorie spécifique dans le filtre, Les réalisations affichées doivent être filtrées en fonction de la catégorie sélectionné", async () => {
+    it("Scénario 3: L'utilisateur sélectionne une catégorie spécifique dans le filtre, Les réalisations affichées doivent être filtrées en fonction de la catégorie sélectionné", async () => {
         api.loadData = jest.fn().mockReturnValue(data);
 
         render(
@@ -74,5 +62,17 @@ describe("Lorsqu'une page est créée", () => {
 
         expect(labelConference).toBeInTheDocument();
         expect(labelExpérienceDigitale).not.toBeInTheDocument();
+    });
+    it("Scénario 7: EventCard affiche une carte d'événement avec le dernier événement", async () => {
+        api.loadData = jest.fn().mockReturnValue(data);
+
+        render(
+            <DataProvider>
+                <Page />
+            </DataProvider>
+        );
+
+        const eventCardSmall = await screen.findByTestId("last-event-card");
+        expect(eventCardSmall).toBeInTheDocument();
     });
 });

@@ -46,7 +46,13 @@ const Form = ({ onSuccess, onError }) => {
             const formData = new FormData(form);
             let hasErrors = false;
 
-            const requiredFields = ["nom", "prenom", "email", "type"];
+            const requiredFields = [
+                "nom",
+                "prenom",
+                "email",
+                "type",
+                "message",
+            ];
             const errors = {};
             requiredFields.forEach((fieldName) => {
                 if (!formData.get(fieldName)) {
@@ -146,6 +152,7 @@ const Form = ({ onSuccess, onError }) => {
                         name="message"
                         label="Message"
                         type={FIELD_TYPES.TEXTAREA}
+                        error={errorFields.message}
                     />
                 </div>
             </div>

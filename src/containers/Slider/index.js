@@ -35,13 +35,16 @@ const Slider = () => {
                     className={`SlideCard SlideCard--${
                         currentIndex === idx ? "display" : "hide"
                     }`}
+                    data-testid="SlideCard"
                 >
                     <img src={event.cover} alt="forum" />
                     <div className="SlideCard__descriptionContainer">
                         <div className="SlideCard__description">
                             <h3>{event.title}</h3>
                             <p>{event.description}</p>
-                            <div>{getMonth(new Date(event.date))}</div>
+                            <div data-testid={idx}>
+                                {getMonth(new Date(event.date))}
+                            </div>
                         </div>
                     </div>
                 </div>
