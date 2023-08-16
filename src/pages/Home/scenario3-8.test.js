@@ -63,7 +63,7 @@ describe("Lorsqu'une page est créée", () => {
         expect(labelConference).toBeInTheDocument();
         expect(labelExpérienceDigitale).not.toBeInTheDocument();
     });
-    it("Scénario 7: EventCard affiche une carte d'événement avec le dernier événement", async () => {
+    it("Scénario 8: EventCard affiche une carte d'événement avec le dernier événement", async () => {
         api.loadData = jest.fn().mockReturnValue(data);
 
         render(

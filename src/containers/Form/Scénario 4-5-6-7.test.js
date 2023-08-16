@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "./index";
 
 describe("et qu'un clic est déclenché sur le bouton de soumission", () => {
-    it("Scénario 4-5-6-9: Le formulaire est prêt pour être rempli, les champs non remplis affichent un message d’erreur. les champs sont remplis l'action de 'onSuccess' est appelée, après un court délai, tous les champs de formulaires sont réinitialisés", async () => {
+    it("Scénario 4-5-6-7: Le formulaire est prêt pour être rempli, les champs non remplis affichent un message d’erreur. les champs sont remplis l'action de 'onSuccess' est appelée, après un court délai, tous les champs de formulaires sont réinitialisés", async () => {
         const onSuccess = jest.fn();
         render(<Form onSuccess={onSuccess} />);
 
@@ -71,7 +71,7 @@ describe("et qu'un clic est déclenché sur le bouton de soumission", () => {
         // l'action de 'onSuccess' est appelé, le message à été envoyer
         expect(onSuccess).toHaveBeenCalled();
 
-        // Scénario 9: Le message est envoyé, après un court délai, les champs de formulaires sont réinitialisés
+        // Scénario 7: Le message est envoyé, après un court délai, les champs de formulaires sont réinitialisés
 
         await screen.findByText("Envoyer");
         await new Promise((resolve) => {
