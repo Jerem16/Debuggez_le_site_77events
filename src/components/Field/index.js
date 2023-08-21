@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react"; // Don't forget to import React if it's not imported already
+import React from "react";
 import "./style.scss";
 
 export const FIELD_TYPES = {
@@ -23,8 +23,8 @@ const Field = ({
                     type="text"
                     name={name}
                     placeholder={placeholder}
-                    data-testid={`field-testid-${name}`}
-                    onChange={onChange} // Ajoutez cette ligne
+                    data-testid={`field-testid-${name}`} // Ajout du data-testid pour les tests unitaires
+                    onChange={onChange} // Ajout du changement de contenu
                 />
             );
             break;
@@ -33,7 +33,7 @@ const Field = ({
                 <textarea
                     name={name}
                     placeholder="Entrez votre message"
-                    data-testid={`field-testid-${name}`}
+                    data-testid={`field-testid-${name}`} // Ajout du data-testid pour les tests unitaires
                 />
             );
             break;

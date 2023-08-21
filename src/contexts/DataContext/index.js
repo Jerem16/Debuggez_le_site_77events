@@ -5,7 +5,7 @@ import {
     useContext,
     useEffect,
     useState,
-    useMemo,
+    useMemo, // Importation de useMemo
 } from "react";
 
 const DataContext = createContext({});
@@ -33,6 +33,7 @@ export const DataProvider = ({ children }) => {
         getData();
     }, []);
 
+    // Utilisation de reduce pour définir le dernier événement (last) en fonction de la date
     const last = data?.events?.reduce((latestEvent, currentEvent) => {
         if (
             !latestEvent ||
@@ -43,6 +44,7 @@ export const DataProvider = ({ children }) => {
         return latestEvent;
     }, null);
 
+    // Utilisation de useMemo pour optimiser contextValue, ajout de la variable locale last
     const contextValue = useMemo(() => ({ data, last, error }), [data, error]);
 
     return (

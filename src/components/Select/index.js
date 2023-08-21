@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Import de useEffect
 import PropTypes from "prop-types";
 
 import "./style.scss";
@@ -12,17 +12,19 @@ const Select = ({
     titleEmpty,
     label,
     type = "normal",
-    error,
-    reset,
+    error, // Prop pour gérer l'état d'erreur
+    reset, // Prop pour déclencher une réinitialisation
 }) => {
-    const [value, setValue] = useState(null);
-    const [collapsed, setCollapsed] = useState(true);
+    const [value, setValue] = useState(null); // Initialisation de l'état avec null
+    const [collapsed, setCollapsed] = useState(true); 
 
+    // Fonction pour réinitialiser la valeur lorsque la prop reset change
     const resetValue = () => {
         setValue(null);
         onChange(null);
     };
 
+    // Fonction pour changer la valeur sélectionnée et déclencher onChange
     const changeValue = (newValue) => {
         onChange(newValue);
         setValue(newValue);
@@ -30,6 +32,7 @@ const Select = ({
     };
 
     useEffect(() => {
+        // Réinitialiser la valeur si la prop reset change
         if (reset) {
             resetValue();
         }
@@ -71,7 +74,7 @@ const Select = ({
                                             defaultChecked={value === s}
                                             name={name}
                                             type="radio"
-                                            data-testid={`input-li-testid-${s}`}
+                                            data-testid={`input-li-testid-${s}`} // Ajout du data-testid pour les tests unitaires
                                         />{" "}
                                         {s}
                                     </li>
@@ -82,7 +85,7 @@ const Select = ({
                     <input type="hidden" value={value || ""} name={name} />
                     <button
                         type="button"
-                        data-testid={`collapse-button-testid-${name}`}
+                        data-testid={`collapse-button-testid-${name}`} // Ajout du data-testid pour les tests unitaires
                         className={collapsed ? "open" : "close"}
                         onClick={(e) => {
                             e.preventDefault();
@@ -93,7 +96,8 @@ const Select = ({
                     </button>
                 </div>
             </div>
-            {error && <div className="error-type">{error}</div>}
+            {error && <div className="error-type">{error}</div>}{" "}
+            {/* Affichage de l'erreur si présente */}
         </>
     );
 };

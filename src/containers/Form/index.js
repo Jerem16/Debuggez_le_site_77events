@@ -1,11 +1,11 @@
 import { act } from "react-dom/test-utils";
-
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
+// Fonction simulant une API de contact
 const mockContactApi = () =>
     new Promise((resolve) => {
         setTimeout(resolve, 1000);
@@ -13,8 +13,14 @@ const mockContactApi = () =>
 
 const Form = ({ onSuccess, onError }) => {
     const [sending, setSending] = useState(false);
+
+    // État pour gérer la soumission du formulaire
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const [resetSelect, setResetSelect] = useState(false); // Nouvelle variable d'état
+
+    // Nouvelle variable d'état pour réinitialiser le Select
+    const [resetSelect, setResetSelect] = useState(false);
+
+    // État pour gérer les erreurs de validation des champs
     const [errorFields, setErrorFields] = useState({
         nom: "",
         prenom: "",
@@ -22,7 +28,10 @@ const Form = ({ onSuccess, onError }) => {
         type: "",
     });
 
+    // Référence au formulaire
     const formRef = useRef(null);
+
+    // Fonction de réinitialisation du formulaire
     const resetForm = () => {
         setErrorFields({
             nom: "",
@@ -32,13 +41,14 @@ const Form = ({ onSuccess, onError }) => {
         });
 
         if (formRef.current) {
-            formRef.current.reset();
+            formRef.current.reset(); // Réinitialisation du formulaire
         }
 
         setFormSubmitted(false);
-        setResetSelect(true);
+        setResetSelect(true); // Activation de la réinitialisation de Select
     };
 
+    // Fonction de soumission du formulaire
     const sendContact = useCallback(
         async (evt) => {
             evt.preventDefault();
@@ -90,6 +100,7 @@ const Form = ({ onSuccess, onError }) => {
         [onSuccess, onError]
     );
 
+    // Réinitialisation du formulaire après soumission
     useEffect(() => {
         let timeoutId;
 
@@ -106,6 +117,7 @@ const Form = ({ onSuccess, onError }) => {
         };
     }, [formSubmitted]);
 
+    // Rendu du composant
     return (
         <form ref={formRef} onSubmit={sendContact}>
             <div className="row">
@@ -114,13 +126,13 @@ const Form = ({ onSuccess, onError }) => {
                         placeholder="Entrez votre nom"
                         label="Nom"
                         name="nom"
-                        error={errorFields.nom}
+                        error={errorFields.nom} // Gestion des erreurs
                     />
                     <Field
                         placeholder="Entrez votre prénom"
                         label="Prénom"
                         name="prenom"
-                        error={errorFields.prenom}
+                        error={errorFields.prenom} // Gestion des erreurs
                     />
                     <Select
                         selection={["Personne", "Entreprise"]}
@@ -129,15 +141,15 @@ const Form = ({ onSuccess, onError }) => {
                         name="type"
                         type="large"
                         titleEmpty
-                        error={errorFields.type}
-                        reset={resetSelect}
+                        error={errorFields.type} // Gestion des erreurs
+                        reset={resetSelect} // Variable d'état pour la réinitialisation
                         placeholder="type"
                     />
                     <Field
                         placeholder="Entrez votre email"
                         label="Email"
                         name="email"
-                        error={errorFields.email}
+                        error={errorFields.email} // Gestion des erreurs
                     />
                     <Button
                         data-testid="button-test-id"
@@ -152,7 +164,7 @@ const Form = ({ onSuccess, onError }) => {
                         name="message"
                         label="Message"
                         type={FIELD_TYPES.TEXTAREA}
-                        error={errorFields.message}
+                        error={errorFields.message} // Gestion des erreurs
                     />
                 </div>
             </div>

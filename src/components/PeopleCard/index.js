@@ -5,7 +5,11 @@ import "./style.scss";
 const PeopleCard = ({ imageSrc, imageAlt, position, name }) => (
     <div className="PeopleCard">
       <div className="PeopleCard__imageContainer">
-        <img data-testid="peopleCard-image-testid" src={imageSrc} alt={imageAlt} />
+        <img
+          data-testid="peopleCard-image-testid" // Ajout du data-testid pour les tests unitaires
+          src={imageSrc}
+          alt={imageAlt}
+        />
       </div>
       <div className="PeopleCard__descriptionContainer">
         <div className="PeopleCard__name">{name}</div>
@@ -23,6 +27,6 @@ PeopleCard.propTypes = {
 
 PeopleCard.defaultProps = {
   imageAlt: "",
-}
+};
 
 export default PeopleCard;

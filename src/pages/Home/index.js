@@ -137,7 +137,7 @@ const Page = () => {
                     {last && ( // Vérifie si last est défini avant de rendre l'EventCard
                         <Modal
                             key={last.id}
-                            Content={<ModalEvent event={last} />}
+                            Content={<ModalEvent event={last} />} // Utilisation de ModalEvent
                         >
                             {({ setIsOpened }) => (
                                 <EventCard
@@ -147,7 +147,7 @@ const Page = () => {
                                     date={new Date(last.date)}
                                     small
                                     label="boom"
-                                    data-testid="last-event-card"
+                                    data-testid="last-event-card" // Ajout de data-testid pour gérer le test unitaire
                                 />
                             )}
                         </Modal>
